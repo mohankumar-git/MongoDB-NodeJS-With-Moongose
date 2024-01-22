@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node JS + MongoDB</title>
+</head>
+<body>
+    <h1>Node JS + MongoDB(With Mongoose)</h1>
+    <hr/>
+    <br/>
+    <span>{{message}}</span>
+    {{#if employee}}
+        <div>
+        <h1>Edit Employee</h1>
+        <form action="/update-employee/{{employee._id}}" method="post">
+            <label for="name">Employee Name</label>
+            <input id="name" type="text" name="name" value="{{employee.name}}" />
+            <label for="age">Employee Age</label>
+            <input id="age" type="number" name="age" value="{{employee.age}}" />
+            <label for="position">Employee Position</label>
+            <input id="position" type="text" name="position" value="{{employee.position}}" />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    {{else}}
+        <div>
+        <h1>Add Employee</h1>
+        <form action="/add-employee" method="post">
+            <label for="name">Employee Name</label>
+            <input id="name" type="text" name="name" />
+            <label for="age">Employee Age</label>
+            <input id="age" type="number" name="age" />
+            <label for="position">Employee Position</label>
+            <input id="position" type="text" name="position" />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    {{/if}}
+
+    <ul>
+        {{#each employeeList}}
+        <li>{{this.name}} - {{this.position}} <a href="/?edit_id={{this._id}}">Edit</a> - <a href="/?delete_id={{this._id}}">Delete</a></li>
+        {{/each}}
+    </ul>
+
+</body>
+</html>
